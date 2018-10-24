@@ -216,3 +216,7 @@ pip-selfcheck.json
 
 # ignore all .idea stuff
 .idea/*
+
+# ignore the .csv files that are too big
+events_original.csv
+game_info_original.csv
