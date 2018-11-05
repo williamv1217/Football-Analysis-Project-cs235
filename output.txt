@@ -1,0 +1,57 @@
+{'low-high': 890, 'low-med': 1133, 'high-med': 1136, 'med-high': 1134, 'med-low': 1142, 'low-low': 741, 'high-high': 748, 'high-low': 894, 'med-med': 1256}
+{'low-high': 22556, 'low-med': 29953, 'high-med': 27842, 'med-high': 28765, 'med-low': 29994, 'low-low': 20109, 'high-high': 19069, 'high-low': 21595, 'med-med': 33042}
+{'low-high': 3960, 'low-med': 5467, 'high-med': 4792, 'med-high': 5183, 'med-low': 5134, 'low-low': 3562, 'high-high': 3677, 'high-low': 3493, 'med-med': 5895}
+
+high-high games 748
+fouls 19069 fouls/game 25.49331550802139
+fouls by home team/game 12.598930481283423 fouls by away team/game 12.894385026737968
+cards 3677 cards/game 4.915775401069519
+cards by home team/game 2.271390374331551 cards by away team/game 2.644385026737968
+
+high-med games 1136
+fouls 27842 fouls/game 24.508802816901408
+fouls by home team/game 11.800176056338028 fouls by away team/game 12.70862676056338
+cards 4792 cards/game 4.21830985915493
+cards by home team/game 1.7086267605633803 cards by away team/game 2.5096830985915495
+
+high-low games 894
+fouls 21595 fouls/game 24.155480984340045
+fouls by home team/game 11.357941834451902 fouls by away team/game 12.797539149888143
+cards 3493 cards/game 3.907158836689038
+cards by home team/game 1.558165548098434 cards by away team/game 2.348993288590604
+
+med-high games 1134
+fouls 28765 fouls/game 25.36596119929453
+fouls by home team/game 13.030864197530864 fouls by away team/game 12.335097001763668
+cards 5183 cards/game 4.570546737213404
+cards by home team/game 2.3095238095238093 cards by away team/game 2.2610229276895946
+
+med-med games 1256
+fouls 33042 fouls/game 26.30732484076433
+fouls by home team/game 12.898089171974522 fouls by away team/game 13.409235668789808
+cards 5895 cards/game 4.693471337579618
+cards by home team/game 2.1130573248407645 cards by away team/game 2.5804140127388533
+
+med-low games 1142
+fouls 29994 fouls/game 26.26444833625219
+fouls by home team/game 12.848511383537653 fouls by away team/game 13.415936952714535
+cards 5134 cards/game 4.495621716287215
+cards by home team/game 1.9395796847635727 cards by away team/game 2.5560420315236425
+
+low-high games 890
+fouls 22556 fouls/game 25.343820224719103
+fouls by home team/game 13.14494382022472 fouls by away team/game 12.198876404494381
+cards 3960 cards/game 4.449438202247191
+cards by home team/game 2.356179775280899 cards by away team/game 2.093258426966292
+
+low-med games 1133
+fouls 29953 fouls/game 26.436893203883496
+fouls by home team/game 13.172992056487201 fouls by away team/game 13.263901147396293
+cards 5467 cards/game 4.825242718446602
+cards by home team/game 2.377758164165931 cards by away team/game 2.447484554280671
+
+low-low games 741
+fouls 20109 fouls/game 27.13765182186235
+fouls by home team/game 13.276653171390013 fouls by away team/game 13.860998650472334
+cards 3562 cards/game 4.807017543859649
+cards by home team/game 2.2483130904183537 cards by away team/game 2.5587044534412957
