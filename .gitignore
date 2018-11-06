@@ -217,6 +217,9 @@ pip-selfcheck.json
 # ignore all .idea stuff
 .idea/*
 
-# ignore the .csv files that are too big
+# ignore the original csv files that are too big
 events_original.csv
 game_info_original.csv
+
+# ignore the temp files created by ipython notebook in pycharm
+untitled
