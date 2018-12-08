@@ -211,8 +211,11 @@ pip-selfcheck.json
 
 # End of https://www.gitignore.io/api/python,pycharm
 
-# ignore project proposal Pages files too
-project_proposal.pages
+# ignore Pages files too
+*.pages
+
+# ignore the html graphs
+*.html
 
 # ignore all .idea stuff
 .idea/*
