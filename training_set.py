@@ -34,10 +34,8 @@ merged_dataset = pd.read_csv('./football_events/merged.csv')
 
 team_rank =['high','med','low']
 
-idx = list(range(50,len(merged_dataset),500))
-#print(idx)
-merged_dataset = merged_dataset.iloc[idx];
-#print(len(merged_dataset))
+#idx = list(range(50,len(merged_dataset),500))
+#merged_dataset = merged_dataset.iloc[idx];
 
 teams = set()
 
@@ -67,10 +65,11 @@ neigh.fit(training_set_x, training_set_y)
 predicted_outcomes = neigh.predict(test_set_x)
 
 
+
 difference = 0.0
 difference_sq = 0.0
 for i in range(len(test_set_y)):
-	#print(str(predicted_outcomes[i][0]) + ' '+ str(test_set_y[i][0]))
+	print(str(predicted_outcomes[i][0]) + ' '+ str(test_set_y[i][0]))
 	difference = difference + abs(predicted_outcomes[i][0] - test_set_y[i][0])
 	difference_sq = difference_sq + (predicted_outcomes[i][0] - test_set_y[i][0])*(predicted_outcomes[i][0] - test_set_y[i][0])
 
