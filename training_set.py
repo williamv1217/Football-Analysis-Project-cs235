@@ -5,6 +5,7 @@ from dataset import dataset
 from knn import knn
 from neural import neuralNet
 from sklearn.neural_network import MLPRegressor
+from linearReg import linearReg
 
 			
 #eventType
@@ -36,7 +37,7 @@ merged_dataset = pd.read_csv('./football_events/merged.csv')
 
 team_rank =['high','med','low']
 
-#idx = list(range(50,len(merged_dataset),500))
+#idx = list(range(5,len(merged_dataset),50))
 #merged_dataset = merged_dataset.iloc[idx];
 
 teams = set()
@@ -62,9 +63,10 @@ test_set_x, test_set_y = dataset(test_dataset)
 #print(test_set_y)
 
 #knn(training_set_x, training_set_y, test_set_x, test_set_y)
+#print("blah blah")
+#neuralNet(training_set_x, training_set_y, test_set_x, test_set_y)
 
-neuralNet(training_set_x, training_set_y, test_set_x, test_set_y)
-
+linearReg(training_set_x, training_set_y, test_set_x, test_set_y)
 
 
 
