@@ -1,23 +1,41 @@
 import numpy as np
 import pickle
-from prediction.math_functions import root_mean_square_error, r2_scores
+from sklearn.metrics import r2_score, explained_variance_score
+from prediction.math_functions import rmse_metric
 
-def linear_regression(test_x, test_y, train_x, train_y, iters=1000,alpha=0.001):
+def linear_regression(test_x, test_y, train_x, train_y, iters=2000,alpha=0.001):
     x = np.array(train_x)
     y = np.array(train_y)
     b = np.zeros([len(y[0]), len(x[0])])
 
     g, cost = gradient_descent(x,y,b,iters,alpha)
-    print(g)
+    # print(g)
     final_cost = compute_cost(x,y,g)
-    print(final_cost)
+    # print(final_cost)
 
     np_test_x = np.array(test_x)
     predicted_outcome = np_test_x.dot(g.T)
-    print(predicted_outcome)
+    # print(predicted_outcome)
     np_test_y = np.array(test_y)
-    print('rms: ', root_mean_square_error(np_test_y, predicted_outcome))
-    print('r2 score: ', r2_scores(np_test_y, predicted_outcome))
+    # print('rms test: ', np.sqrt(mean_squared_error(np_test_y, predicted_outcome)))
+
+    difference = 0.0
+    difference_sq = 0.0
+    for i in range(len(np_test_y)):
+        print(str(predicted_outcome[i][0]) + ' ' + str(np_test_y[i][0]))
+        difference = difference + abs(predicted_outcome[i][0] - np_test_y[i][0])
+        difference_sq = difference_sq + (predicted_outcome[i][0] - np_test_y[i][0]) * (
+                    predicted_outcome[i][0] - np_test_y[i][0])
+
+    print()
+    print('------------------------------')
+    print()
+    print('difference: ', difference)
+    print('difference squared: ', difference_sq)
+    print('root mean square: ', rmse_metric(np_test_y, predicted_outcome))
+    print('r2_score: ', r2_score(np_test_y, predicted_outcome))
+    print('explained variance: ', explained_variance_score(np_test_y, predicted_outcome))
+
 
 
 def compute_cost(x, y, b):
