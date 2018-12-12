@@ -217,6 +217,9 @@ pip-selfcheck.json
 # ignore the html graphs
 *.html
 
+# ignore the .png images created
+#.png
+
 # ignore all .idea stuff
 .idea/*
 
