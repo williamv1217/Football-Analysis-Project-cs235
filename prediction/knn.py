@@ -1,7 +1,7 @@
 from prediction.math_functions import euclidean_distance
 import pickle
 import numpy as np
-from sklearn.metrics import mean_squared_error, r2_score, explained_variance_score
+from sklearn.metrics import r2_score, explained_variance_score
 from prediction.math_functions import root_mean_squares
 
 class knn_regression():
@@ -46,7 +46,7 @@ class knn_regression():
             total += self.training_label[i][0]
         return total/self.k
 
-if __name__ == '__main__':
+def knn(team1_input, team2_input, team1_name, team2_name):
 
     train_set_x = pickle.load(open('train_set_x.pkl', 'rb'))
     train_set_y = pickle.load(open('train_set_y.pkl', 'rb'))
@@ -54,32 +54,40 @@ if __name__ == '__main__':
     test_set_y = pickle.load(open('test_set_y.pkl', 'rb'))
 
     pred_outcomes = []
-    exp_var = []
-    root_ms = []
-    r2sc = []
 
-    clf = knn_regression(20)
-    clf.fit(train_set_x, train_set_y)
+    k = knn_regression(40)
+    k.fit(train_set_x, train_set_y)
     for i in test_set_x:
-        ps = clf.prediction(i)
+        ps = k.prediction(i)
         pred_outcomes.append(ps)
-    print(pred_outcomes)
 
-    print(len(pred_outcomes), len(test_set_y))
-    difference = 0.0
-    difference_sq = 0.0
-    for i in range(len(test_set_y)):
-        print(str(pred_outcomes[i]) + ' ' + str(test_set_y[i][0]))
-        difference = difference + abs(pred_outcomes[i] - test_set_y[i][0])
-        difference_sq = difference_sq + (pred_outcomes[i] - test_set_y[i][0]) * (
-                pred_outcomes[i] - test_set_y[i][0])
-
-    print('prediction', clf.prediction(np.array([1, 1, 1, 14, 9, 8, 0, 0, 0, 10, 5, 1, 0, 0, 0, 5, 5, 4, 0])))
     print()
     print('------------------------------')
+    print('        KNN Prediction        ')
+    print('------------------------------')
+    team1_prediction = k.prediction(team1_input)
+    team2_prediction = k.prediction(team2_input)
+    print(team1_name, 'predicted goals: ', round(team1_prediction, 3))
+    print(team2_name, 'predicted goals: ', round(team2_prediction, 3))
     print()
-    print('difference: ', difference)
-    print('difference squared: ', difference_sq)
+
+    if team1_prediction - team2_prediction > 0.3:
+        print(team1_name, 'victory!')
+    elif team1_prediction - team2_prediction < -0.3:
+        print(team2_name, 'victory!')
+    else:
+        print('Draw!')
+
+    print()
+    print('------------------------------')
+    print('         KNN Metrics          ')
+    print('------------------------------')
     print('root mean square: ', root_mean_squares(test_set_y, pred_outcomes))
     print('r2_score: ', r2_score(test_set_y, pred_outcomes))
     print('explained variance: ', explained_variance_score(test_set_y, pred_outcomes))
+
+# test
+if __name__ == '__main__':
+    knn([1, 1, 1, 14, 5, 6, 3, 0, 0, 17, 2, 1, 0, 0, 0, 6, 3, 5, 0],
+        [2, 1, 1, 16, 7, 17, 2, 0, 0, 6, 3, 0, 0, 0, 0, 5, 6, 5, 0],
+        'chelsea', 'man city')
