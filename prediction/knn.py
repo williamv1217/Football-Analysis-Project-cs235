@@ -1,9 +1,8 @@
 from prediction.math_functions import euclidean_distance
 import pickle
 import numpy as np
-import matplotlib.pyplot as plt
 from sklearn.metrics import mean_squared_error, r2_score, explained_variance_score
-from prediction.math_functions import r2_scores, rmse_metric
+from prediction.math_functions import root_mean_squares
 
 class knn_regression():
     def __init__(self, k, weights=None):
@@ -55,7 +54,11 @@ if __name__ == '__main__':
     test_set_y = pickle.load(open('test_set_y.pkl', 'rb'))
 
     pred_outcomes = []
-    clf = knn_regression(50)
+    exp_var = []
+    root_ms = []
+    r2sc = []
+
+    clf = knn_regression(20)
     clf.fit(train_set_x, train_set_y)
     for i in test_set_x:
         ps = clf.prediction(i)
@@ -71,11 +74,12 @@ if __name__ == '__main__':
         difference_sq = difference_sq + (pred_outcomes[i] - test_set_y[i][0]) * (
                 pred_outcomes[i] - test_set_y[i][0])
 
+    print('prediction', clf.prediction(np.array([1, 1, 1, 14, 9, 8, 0, 0, 0, 10, 5, 1, 0, 0, 0, 5, 5, 4, 0])))
     print()
     print('------------------------------')
     print()
     print('difference: ', difference)
     print('difference squared: ', difference_sq)
-    print('root mean square: ', rmse_metric(test_set_y, pred_outcomes))
+    print('root mean square: ', root_mean_squares(test_set_y, pred_outcomes))
     print('r2_score: ', r2_score(test_set_y, pred_outcomes))
     print('explained variance: ', explained_variance_score(test_set_y, pred_outcomes))

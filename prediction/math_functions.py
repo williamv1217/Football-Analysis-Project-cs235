@@ -1,6 +1,5 @@
 import math
 import numpy as np
-import sklearn as sk
 
 
 # ---------- kNN stuff ----------
@@ -18,7 +17,7 @@ def get_distance(data1, data2):
 
 # ---------- metrics ----------
 
-def rmse_metric(actual, predicted):
+def root_mean_squares(actual, predicted):
     sum_error = 0.0
     for i in range(len(actual)):
         prediction_error = predicted[i] - actual[i]
@@ -26,31 +25,10 @@ def rmse_metric(actual, predicted):
     mean_error = sum_error / float(len(actual))
     return np.sqrt(mean_error)[0]
 
-
-
-
-
-def r2_scores(y, y_prediction):
-    ss_t = 0
-    ss_r = 0
-    for i in range(m):
-        y_pred = b0 + b1 * X[i]
-        ss_t += (Y[i] - mean_y) ** 2
-        ss_r += (Y[i] - y_pred) ** 2
-    r2 = 1 - (ss_r / ss_t)
-
-def accuracy(y, y_pred):
-    error = np.sum((y - y_pred)**2)
-    acc = 100 - (error/len(y))*100
-    return acc
-
-
-
 # ---------- neural network stuff ----------
 def sigmoid_function(x):
     if type(x[0]) == list or type(x[0]) == np.ndarray:
         output = [[0 for i in range(len(x[0]))] for j in range(len(x))]
-
         for i in range(len(x)):
             for j in range(len(x[0])):
                 output[i][j] = (1.0 / (1.0 + math.pow(math.e, -(x[i][j]))))
@@ -60,27 +38,6 @@ def sigmoid_function(x):
         for value in x:
             output2.append(1.0 / (1.0 + math.pow(math.e, -(value))))
         return output2
-
-def normalize(x):
-    return (x / 255 * 0.99) + 0.01
-
-
-
-# ---------- neural network stuff ----------
-
-def cost_function():
-    #mean squared error
-    pass
-
-def gradient_descent():
-    pass
-
-
-
-
-
-
-
 
 # ---------- testing ----------
 
