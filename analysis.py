@@ -6,7 +6,7 @@ py.offline.init_notebook_mode(connected=True)
 # Analysis of past 5 years of football events in the top 5 European Leagues
 # By William Vagharfard and Sakib Md Bin Malek
 def analysis():
-    data = pd.read_csv('../football_events/merged.csv')
+    data = pd.read_csv('merged.csv')
 
     # main_files by William Vagharfard
     print('-----------------------------------')
@@ -81,10 +81,10 @@ def analysis():
                     y = [goal_home_top, goal_home_med, goal_home_low],
                     text= home_goals_percents,
                     textposition='auto',
-                    textfont=dict(size=40),
+                    textfont=dict(size=20),
                     marker=dict(color='rgb(55, 66, 250)'),
                     hoverinfo = ['y', 'y', 'y'],
-                    hoverlabel=dict(font=dict(size=30)),
+                    hoverlabel=dict(font=dict(size=20)),
                     name='Home')
 
 
@@ -93,24 +93,24 @@ def analysis():
                     y = [goal_away_top, goal_away_med, goal_away_low],
                     text=away_goals_percents,
                     textposition='auto',
-                    textfont=dict(size=40),
+                    textfont=dict(size=20),
                     marker=dict(color='rgb(255, 71, 87)'),
                     hoverinfo= ['y', 'y', 'y'],
-                    hoverlabel=dict(font=dict(size=30)),
+                    hoverlabel=dict(font=dict(size=20)),
                     name='Away')
 
     goals_data = [goals_data_home, goals_data_away]
 
     layout = go.Layout(
             barmode='group',
-            font=dict(family='Avenir Medium', size=35),
-            legend=dict(x=0.9, y=0.9, font=dict(size=50)),
+            font=dict(family='Avenir Medium', size=20),
+            legend=dict(x=0.9, y=0.9, font=dict(size=20)),
             hovermode='closest',
             title='Total Home and Away Goals',
-            xaxis=dict(tickfont=dict(size=40)))
+            xaxis=dict(tickfont=dict(size=20)))
 
     fig = go.Figure(data=goals_data, layout=layout)
-    py.offline.plot(fig, auto_open=True, filename='../graphs/home_away_goals.html')
+    py.offline.plot(fig, auto_open=True, filename='home_away_goals.html')
 
     # total goals from corners
     gct_h = data[(data['is_goal'] == 1) & (data['situation'] == 3) & (data['side'] == 1) &
@@ -269,13 +269,13 @@ def analysis():
         domain={'x': [0.70, 0.95]})
 
     layout = go.Layout(
-        font=dict(family='Avenir Heavy', size=40),
-        legend=dict(x=0.49, y=0.9, font=dict(size=40)),
+        font=dict(family='Avenir Heavy', size=20),
+        legend=dict(font=dict(size=20)),
         title='Goal types by team level'
     )
 
     fig=go.Figure(data=[x, y, z], layout=layout)
-    py.offline.plot(fig, filename='../graphs/team_goal_types.html')
+    py.offline.plot(fig, filename='team_goal_types.html')
 
 
     # getting own goals by team level
@@ -319,24 +319,24 @@ def analysis():
                     y = [owng_gameT, owng_gameM, owng_gameL],
                     text= [round(owng_gameT, 3), round(owng_gameM, 3), round(owng_gameL, 3)],
                     textposition='outside',
-                    textfont=dict(size=40),
+                    textfont=dict(size=20),
                     marker=dict(color=colors),
                     hoverinfo = ['y', 'y', 'y'],
-                    hoverlabel=dict(font=dict(size=30)),
+                    hoverlabel=dict(font=dict(size=20)),
                     name='Home')
 
     goals_data = [own_goals]
 
     layout = go.Layout(
-            font=dict(family='Avenir Medium', size=35),
-            legend=dict(x=0.9, y=0.9, font=dict(size=50)),
+            font=dict(family='Avenir Medium', size=20),
+            legend=dict(x=0.9, y=0.9, font=dict(size=20)),
             hovermode='closest',
             title='Own Goals per game by team level',
-            xaxis=dict(tickfont=dict(size=40)))
+            xaxis=dict(tickfont=dict(size=20)))
 
     fig = go.Figure(data=goals_data, layout=layout)
 
-    py.offline.plot(fig, auto_open=True, filename='../graphs/own_goals.html')
+    py.offline.plot(fig, auto_open=True, filename='own_goals.html')
 
     # getting offsides per game by team level
     off_lowA = data[(data['event_type'] == 9) & (data['side'] == 1) & (data['ht_rank'] == 'low')]['event_type'].count()
@@ -372,25 +372,25 @@ def analysis():
                     y = [offs_gameT, offs_gameM, offs_gameL],
                     text= [round(offs_gameT, 3), round(offs_gameM, 3), round(offs_gameL, 3)],
                     textposition='outside',
-                    textfont=dict(size=40),
+                    textfont=dict(size=20),
                     marker=dict(color=colors),
                     hoverinfo = ['y', 'y', 'y'],
-                    hoverlabel=dict(font=dict(size=30)),
+                    hoverlabel=dict(font=dict(size=20)),
                     name='Home')
 
     off_data = [offsides]
 
     layout = go.Layout(
-            font=dict(family='Avenir Medium', size=35),
-            legend=dict(x=0.9, y=0.9, font=dict(size=50)),
+            font=dict(family='Avenir Medium', size=20),
+            legend=dict(x=0.9, y=0.9, font=dict(size=20)),
             hovermode='closest',
             title='Offsides per game by team level',
-            xaxis=dict(tickfont=dict(size=40)))
+            xaxis=dict(tickfont=dict(size=20)))
 
 
     fig = go.Figure(data=off_data, layout=layout)
 
-    py.offline.plot(fig, auto_open=True, filename='../graphs/offsides.html')
+    py.offline.plot(fig, auto_open=True, filename='offsides.html')
 
     # getting total shots off target and total shot attempts by team level
     # we get the off target shots because it is easier to find the total shots ON target by subtracting off-target from the total attempts
@@ -439,24 +439,24 @@ def analysis():
         y=[(100 - offtarget_high_perc), (100 - offtarget_med_perc), (100 - offtarget_low_perc)],
         text=[f'{(100 - offtarget_high_perc)}%', f'{(100 - offtarget_med_perc)}%', f'{(100 - offtarget_low_perc)}%'],
         textposition='outside',
-        textfont=dict(size=40),
+        textfont=dict(size=20),
         marker=dict(color=colors),
         hoverinfo=['y', 'y', 'y'],
-        hoverlabel=dict(font=dict(size=30)),
+        hoverlabel=dict(font=dict(size=20)),
         name='On Target')
 
     layout = go.Layout(
-        font=dict(family='Avenir Medium', size=35),
-        legend=dict(x=0.9, y=0.9, font=dict(size=50)),
+        font=dict(family='Avenir Medium', size=20),
+        legend=dict(x=0.9, y=0.9, font=dict(size=20)),
         hovermode='closest',
         title='Percent of shots on target',
-        xaxis=dict(tickfont=dict(size=40)))
+        xaxis=dict(tickfont=dict(size=20)))
 
     on_tar_data = [on_target]
 
     fig = go.Figure(data=on_tar_data, layout=layout)
 
-    py.offline.plot(fig, auto_open=True, filename='../graphs/on_target_goals.html')
+    py.offline.plot(fig, auto_open=True, filename='on_target_goals.html')
 
 
     # card and foul main_files by team levels

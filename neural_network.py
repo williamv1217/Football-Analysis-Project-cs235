@@ -1,7 +1,7 @@
 import numpy as np
 from sklearn.preprocessing import normalize
 import pickle
-from main_files.math_functions import root_mean_squares
+from math_functions import root_mean_squares
 from sklearn.metrics import r2_score,explained_variance_score
 
 class Neural_Network(object):
@@ -35,19 +35,16 @@ class Neural_Network(object):
         self.backward(X, y, o)
 
     def predict(self, test_set_x, test_set_y):
-        print("Predicted data based on trained weights: ")
-        print("Input (scaled): \n" + str(test_set_x))
-
         results = self.forward(test_set_x)
-
         pred_y = test_set_y
-        print("Output: \n" + str(results))
         print()
         print('------------------------------')
-        print()
+        print('          NN Metrics          ')
+        print('------------------------------')
         print('root mean square: ', root_mean_squares(pred_y, results))
         print('r2_score: ', r2_score(pred_y, results))
         print('explained variance: ', explained_variance_score(pred_y, results))
+
 
     def sigmoid(self, x):
         return 1 / (1 + np.exp(-x))
@@ -57,10 +54,10 @@ class Neural_Network(object):
         return s * (1 - s)
 
 def neural_network():
-    tr_set_x = pickle.load(open('../datasets/train_set_x.pkl', 'rb'))
-    tr_set_y = pickle.load(open('../datasets/train_set_y.pkl', 'rb'))
-    te_set_x = pickle.load(open('../datasets/test_set_x.pkl', 'rb'))
-    te_set_y = pickle.load(open('../datasets/test_set_y.pkl', 'rb'))
+    tr_set_x = pickle.load(open('train_set_x.pkl', 'rb'))
+    tr_set_y = pickle.load(open('train_set_y.pkl', 'rb'))
+    te_set_x = pickle.load(open('test_set_x.pkl', 'rb'))
+    te_set_y = pickle.load(open('test_set_y.pkl', 'rb'))
 
     x, y = np.array(tr_set_x), np.array(tr_set_y)
     pred_x, pred_y = np.array(te_set_x), np.array(te_set_y)
@@ -73,10 +70,10 @@ def neural_network():
 
     NN = Neural_Network()
     for i in range(500):  # trains the NN 500 times
-        # print("Loss: " + str(np.mean(np.square(y - NN.forward(x)))))  # mean sum squared loss
         NN.train(x, y)
     NN.predict(pred_x, pred_y)
-
+    print("Loss: " + str(np.mean(np.square(y - NN.forward(x)))))  # mean sum squared loss
+    print()
 
 if __name__ == '__main__':
     neural_network()

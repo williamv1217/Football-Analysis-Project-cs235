@@ -1,4 +1,4 @@
-from datasets.commons import rankToRank
+from commons import rankToRank
 #from sets import Set
 import pickle
 
