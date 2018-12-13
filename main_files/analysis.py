@@ -3,14 +3,12 @@ import plotly.graph_objs as go
 import pandas as pd
 py.offline.init_notebook_mode(connected=True)
 
-
 # Analysis of past 5 years of football events in the top 5 European Leagues
 # By William Vagharfard and Sakib Md Bin Malek
 def analysis():
     data = pd.read_csv('../football_events/merged.csv')
 
-
-    # analysis by William Vagharfard
+    # main_files by William Vagharfard
     print('-----------------------------------')
     print('             Data Info             ')
     print('-----------------------------------')
@@ -20,16 +18,14 @@ def analysis():
     games_home_high = data[(data['side'] == 1) & (data['ht_rank'] == 'high')]['id_odsp']
     games_away_high = data[(data['side'] == 2) & (data['at_rank'] == 'high')]['id_odsp']
 
-    total_games_top = games_home_high.nunique() + games_away_high.nunique()
-
     games_home_med = data[(data['side'] == 1) & (data['ht_rank'] == 'med')]['id_odsp']
     games_away_med = data[(data['side'] == 2) & (data['at_rank'] == 'med')]['id_odsp']
-
-    total_games_med = games_home_med.nunique() + games_away_med.nunique()
 
     games_home_low = data[(data['side'] == 1) & (data['ht_rank'] == 'low')]['id_odsp']
     games_away_low = data[(data['side'] == 2) & (data['at_rank'] == 'low')]['id_odsp']
 
+    total_games_top = games_home_high.nunique() + games_away_high.nunique()
+    total_games_med = games_home_med.nunique() + games_away_med.nunique()
     total_games_low = games_home_low.nunique() + games_away_low.nunique()
 
 
@@ -311,9 +307,9 @@ def analysis():
     print('-----------------------------------')
     print('        Own Goals per Game         ')
     print('-----------------------------------')
-    print(f'Top teams: {owng_gameT}')
-    print(f'Mid teams: {owng_gameM}')
-    print(f'Low teams: {owng_gameL}')
+    print(f'Top teams: {round(owng_gameT, 3)}')
+    print(f'Mid teams: {round(owng_gameM, 3)}')
+    print(f'Low teams: {round(owng_gameL, 3)}')
 
 
     # plotting own goals by team level
@@ -363,9 +359,9 @@ def analysis():
     print('-----------------------------------')
     print('         Offsides per Game         ')
     print('-----------------------------------')
-    print(f'Top teams: {offs_gameT}')
-    print(f'Mid teams: {offs_gameM}')
-    print(f'Low teams: {offs_gameL}')
+    print(f'Top teams: {round(offs_gameT, 3)}')
+    print(f'Mid teams: {round(offs_gameM, 3)}')
+    print(f'Low teams: {round(offs_gameL, 3)}')
 
 
     # plotting offsides per game by team level
@@ -463,7 +459,7 @@ def analysis():
     py.offline.plot(fig, auto_open=True, filename='../graphs/on_target_goals.html')
 
 
-    # card and foul analysis by team levels
+    # card and foul main_files by team levels
     # by Sakib Md Bin Malek
 
     count_of_games = {}

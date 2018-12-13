@@ -1,8 +1,9 @@
 import numpy as np
 import pickle
 from sklearn.metrics import r2_score, explained_variance_score
-from prediction.math_functions import root_mean_squares
-import matplotlib.pyplot as plt
+from main_files.math_functions import root_mean_squares
+from datasets.add_lists_script import prediction_feature_list
+
 
 class lin_regression():
     def __init__(self, iters=2000, alpha=0.001):
@@ -32,10 +33,10 @@ class lin_regression():
         return b, cost
 
 def linear_regression(team1_input, team2_input, team1_name, team2_name):
-    tr_set_x = pickle.load(open('train_set_x.pkl', 'rb'))
-    tr_set_y = pickle.load(open('train_set_y.pkl', 'rb'))
-    te_set_x = pickle.load(open('test_set_x.pkl', 'rb'))
-    te_set_y = pickle.load(open('test_set_y.pkl', 'rb'))
+    tr_set_x = pickle.load(open('../datasets/train_set_x.pkl', 'rb'))
+    tr_set_y = pickle.load(open('../datasets/train_set_y.pkl', 'rb'))
+    te_set_x = pickle.load(open('../datasets/test_set_x.pkl', 'rb'))
+    te_set_y = pickle.load(open('../datasets/test_set_y.pkl', 'rb'))
 
     np_test_x = np.array(te_set_x)
     np_test_y = np.array(te_set_y)
@@ -75,46 +76,16 @@ def linear_regression(team1_input, team2_input, team1_name, team2_name):
 
 if __name__ == '__main__':
 
-    team1_home =[[1,1,2,13,5,15,1,0,0,19,2,0,0,0,0,6,3,4,0]
-,[2,1,2,10,4,19,3,0,1,15,2,0,0,0,0,4,3,3,0]
-,[1,1,1,7,3,13,3,0,0,10,2,0,0,0,0,2,1,3,1]
-,[2,1,1,15,7,10,1,0,0,13,3,0,0,0,0,2,7,5,1]
-,[1,2,1,16,10,6,0,0,0,8,1,0,0,0,0,5,6,5,0]
-,[2,2,1,17,10,8,3,0,0,6,1,0,0,0,0,7,6,4,0]
-,[1,1,1,14,5,6,3,0,0,17,2,1,0,0,0,6,3,5,0]
-,[2,1,1,16,7,17,2,0,0,6,3,0,0,0,0,5,6,5,0]]
+    x = [[1,2,2,17,9,6,1,0,0,12,2,0,0,0,0,2,8,7,0]
+,[2,2,2,12,4,12,4,0,0,6,1,0,0,0,0,3,4,5,0]]
+    y = [[1,3,1,6,0,19,4,0,0,9,1,1,0,0,0,2,2,2,0]
+,[2,3,1,13,5,9,3,0,0,19,2,1,0,0,0,4,5,3,1]]
 
-    team1_away = [[1,1,1,19,4,12,3,0,0,13,0,0,0,0,0,7,10,2,0]
-,[2,1,1,9,7,13,6,1,0,12,2,0,0,0,0,4,3,2,0]
-,[1,1,2,12,5,16,4,0,0,6,2,0,0,0,0,2,3,5,2]
-,[2,1,2,8,3,5,2,0,0,16,0,0,0,0,0,3,5,0,0]]
+    team1, team2 = prediction_feature_list(x, y, ret='avg')
+    print(team1)
+    print(team2)
 
-
-    team1_home= np.array(team1_home)
-    team1_away = np.array(team1_away)
-
-    team1 = []
-    team2 = []
-
-    for row in range(len(team1_home)):
-        if team1_home[row][0] == 1:
-            team1.append(team1_home[row])
-        else:
-            team2.append(team1_home[row])
-
-    for row in range(len(team1_away)):
-        if team1_away[row][0] == 1:
-            team2.append(team1_away[row])
-        else:
-            team1.append(team1_away[row])
-
-    team1 = np.array(team1)
-    team2 = np.array(team2)
-
-    team1 = np.average(team1, axis=0)
-    team2 = np.average(team2, axis=0)
-
-    linear_regression(team1, team2, 'chelsea', 'brighton')
+    linear_regression(team1, team2, 'chelsea', 'man utd')
 
 
 

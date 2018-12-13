@@ -1,8 +1,8 @@
-from prediction.math_functions import euclidean_distance
+from main_files.math_functions import euclidean_distance
 import pickle
 import numpy as np
 from sklearn.metrics import r2_score, explained_variance_score
-from prediction.math_functions import root_mean_squares
+from main_files.math_functions import root_mean_squares
 
 class knn_regression():
     def __init__(self, k, weights=None):
@@ -48,10 +48,10 @@ class knn_regression():
 
 def knn(team1_input, team2_input, team1_name, team2_name):
 
-    train_set_x = pickle.load(open('train_set_x.pkl', 'rb'))
-    train_set_y = pickle.load(open('train_set_y.pkl', 'rb'))
-    test_set_x = pickle.load(open('test_set_x.pkl', 'rb'))
-    test_set_y = pickle.load(open('test_set_y.pkl', 'rb'))
+    train_set_x = pickle.load(open('../datasets/train_set_x.pkl', 'rb'))
+    train_set_y = pickle.load(open('../datasets/train_set_y.pkl', 'rb'))
+    test_set_x = pickle.load(open('../datasets/test_set_x.pkl', 'rb'))
+    test_set_y = pickle.load(open('../datasets/test_set_y.pkl', 'rb'))
 
     pred_outcomes = []
 
