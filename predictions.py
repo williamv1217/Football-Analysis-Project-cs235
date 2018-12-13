@@ -3,6 +3,7 @@ from linear_regression import linear_regression
 from feature_sets import prediction_feature_list
 from neural_network import neural_network
 
+# main prediction method (calls knn, linear regression, and neural network)
 def prediction():
     # test set features for chelsea vs man city (home games for chelsea)
     x = [[1, 1, 1, 12, 3, 11, 2, 0, 0, 14, 4, 0, 0, 0, 0, 4, 6, 1, 1],

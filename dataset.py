@@ -1,5 +1,4 @@
 from commons import rankToRank
-#from sets import Set
 import pickle
 
 # eventType

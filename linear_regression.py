@@ -5,6 +5,8 @@ from math_functions import root_mean_squares
 from feature_sets import prediction_feature_list
 
 
+# linear regression classifier
+# code written with help from various online resources
 class lin_regression():
     def __init__(self, iters=2000, alpha=0.001):
         self.iters = iters
@@ -36,6 +38,7 @@ class lin_regression():
             cost[i] = self.compute_cost(x, y, b)
         return b, cost
 
+# gets the datasets and does the linear regression classification
 def linear_regression(team1_input, team2_input, team1_name, team2_name):
     tr_set_x = pickle.load(open('train_set_x.pkl', 'rb'))
     tr_set_y = pickle.load(open('train_set_y.pkl', 'rb'))
@@ -78,6 +81,10 @@ def linear_regression(team1_input, team2_input, team1_name, team2_name):
     print('r2_score: ', r2_score(np_test_y, p_outcoum))
     print('explained variance: ', explained_variance_score(np_test_y, p_outcoum))
 
+
+
+
+# testing linear regression on a simple dataset
 if __name__ == '__main__':
 
     # test set features for chelsea vs man city (home games for chelsea)
@@ -103,7 +110,7 @@ if __name__ == '__main__':
     linear_regression(team1, team2, 'chelsea', 'man city')
 
 
-    # plots to find the best number of iterations
+    # plots to find the best number of iterations for linear regression
 
     # exp_var = []
     # root_ms = []

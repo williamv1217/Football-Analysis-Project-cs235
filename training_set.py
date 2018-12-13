@@ -1,6 +1,8 @@
 #from sets import Set
 import pickle
 
+# sakib code to get features from a dataset and save into a pickle file
+
 # eventType
 ATTEMPT = 1
 CORNER = 2

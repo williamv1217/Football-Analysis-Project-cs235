@@ -4,6 +4,8 @@ from sklearn.metrics import r2_score, explained_variance_score
 from math_functions import root_mean_squares
 from feature_sets import prediction_feature_list
 
+# knn classifier
+# code written with help from various online resources
 class knn_regression():
     def __init__(self, k, weights=None):
         self.k = k
@@ -32,6 +34,7 @@ class knn_regression():
             total += self.training_label[i][0]
         return total/self.k
 
+# gets the datasets and does the knn classification
 def knn(team1_input, team2_input, team1_name, team2_name):
 
     train_set_x = pickle.load(open('train_set_x.pkl', 'rb'))
@@ -73,7 +76,7 @@ def knn(team1_input, team2_input, team1_name, team2_name):
     print('explained variance: ', explained_variance_score(test_set_y, pred_outcomes))
     print()
 
-# test
+# testing knn classification with a basic dataset
 if __name__ == '__main__':
     # test set features for chelsea vs man city (home games for chelsea)
     x = [[1,1,1,12,3,11,2,0,0,14,4,0,0,0,0,4,6,1,1],
